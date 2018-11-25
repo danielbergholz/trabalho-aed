@@ -23,3 +23,11 @@ Git do trabalho final da disciplina de AED na UnB 02/2018.
     * Antes, iríamos fazer um monte de .cpp e unir em um só codigo main, agora ficou mais organizado;
     * Um arquivo .hpp que conterá as classes do Roteador e do Dado
   * A equipe se familiarizou mais com os comandos do GitHub
+* **24/11 - 25/11**: Finalização do trabalho
+  * Thiago Alves: Fez Sketch praticamente pronto do grafo.hpp
+  * Arthur Madero: Fez as classes do dado e do roteador e começou a escrever o main.cpp
+  * Daniel Gobbi: Concluiu o grafo.hpp e o main.cpp
+  * Agora em termos mais técnicos:
+    * Thiago: Escreveu a maior parte do grafo.hpp. Foi o responsável por todo o algoritmo de Dijkstra
+    * Arthur: Criou as classes do dado e do roteador, inventou a função hash para cada dado, e fez um sketch inicial do main
+    * Daniel: Terminou de unir tudo. Escreveu mais métodos (que estavam faltando) no grafo.hpp, e os implementou corretamente no main

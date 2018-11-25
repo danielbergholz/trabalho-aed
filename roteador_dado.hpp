@@ -2,49 +2,35 @@
 // PROTOCOLO DE ROTEAMENTO
 // Funcionalidade: Roteador e Dado
 // Arquivo que contem as classes do Roteador e do Dado que será transmitido
-// Responsavel: Daniel Gobbi
+// Responsavel: Arthur Madero
 
-#ifndef ROTEADOR_E_DADO
-#define ROTEADOR_E_DADO
+#ifndef DADO    
+#define DADO
 #include <iostream>
 #include <time.h>
 #include <string>
-
-class Roteador{
-  public:
-    // ATRIBUTOS
-    int id; // identificador do Roteador
-};
+#include <vector>
+using namespace std;
 
 class Dado{
   public:
     // ATRIBUTOS
     int codigo; // identificador do Dado
-    
-	
+    int caminho; // diz o custo do caminho mínimo	
 	// CONSTRUTOR
     Dado(int id){
-		codigo = (time(NULL) % 1000 + 1)*id; // função hash implementada aqui
+        if (id != 0)
+    		codigo = (time(NULL) % 1000 + 1)*id; // função hash implementada aqui
+        else
+    		codigo = (time(NULL) % 1000 + 1); // função hash implementada aqui
+
 	}
 };
 
+class Roteador{
+  public:
+    // ATRIBUTOS
+    vector <Dado> dados; // tabela inteligente do roteador
+};
+
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

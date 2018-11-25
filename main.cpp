@@ -1,54 +1,69 @@
 // TRABALHO FINAL DE AED
 // PROTOCOLO DE ROTEAMENTO
 // Funcionalidade: Menu
-// Responsavel: Daniel Gobbi
+// Responsavel: Daniel Gobbi e Arthur Madero
 
 #include <iostream>
 #include <string>
+#include <vector>
 #include "roteador_dado.hpp"
+#include "grafo.hpp" 
 using namespace std;
 
 int main(){
     int opcao = 1;
-    int id = 0; // é um contador. será utilizado para distribuir id's para os roteadores
+    bool montado = false; // auxiliar para checar se foi montado um grafo ou nao
     int auxi; // inteiro auxiliar
-    Dado *d;
-    Roteador *r;
-    Grafo g;
+    Grafo *g = NULL;
 
-    cout << "Bem vindo ao menu do seu roteador!\n";
+    cout << "Bem vindo a simulador de rede!\n";
     cout << "Selecione uma das opcoes a seguir:\n";
-    while (opcao > 0 && opcao < 4){
-        cout << "1) Ver dispositivos conectados a rede\n";
-        cout << "2) Conectar um novo dispositivo\n";
+    while (opcao > 0 && opcao < 5){
+        cout << "1) Iniciar uma nova rede\n";
+        cout << "2) Criar enlace entre dispositivos\n";
         cout << "3) Enviar pacote\n";
-        cout << "4) Sair\n";
+        cout << "4) Consultar tabela de roteador\n";
+        cout << "5) Sair\n";
         cin >> opcao;
 
         switch(opcao){
             case 1:
-                g.mostrar();
+                g = NULL;
+                cout << "Quantos dispositivos terao na sua rede?\n";
+                cin >> auxi;
+                g = new Grafo(auxi);
                 cout << endl;
                 break;
             case 2:
-                delete[] r;
-                cout << "O novo dispositivo tem ID: " << id << "\nEm quantos roteadores ele está conectado? (contando com a internet)\n";
-                cin >> auxi;
-                cout << "Favor digitar os ID's dos roteadores\n";
-                for (int i = 0; i < auxi; ++i){
-                    cout << // PAREI AQUI
+                if (g != NULL){
+                    g->Monta_grafo(auxi);
+                    montado = true;
                 }
+                else
+                    cout << "É necessario criar uma rede primeiro!\n";
                 cout << endl;
                 break;
             case 3:
-                delete[] d;
-                cout << "Qual o destino do pacote que será enviado? (favor entrar o codigo do roteador)\n";
-                cin >> auxi;
-                d = new Dado(auxi);
+                if (g == NULL)
+                    cout << "É necessario criar uma rede primeiro!\n";
+                else if (montado == false)
+                    cout << "É necessario criar enlaces entre os roteadores primeiro!\n";
+                else{
+                    g->envia_pacote();
+                }
+                cout << endl;
+                break;
+            case 4:
+                if (g == NULL)
+                    cout << "É necessario criar uma rede primeiro!\n";
+                else{
+                    g->mostrar_tabela();
+                }
                 cout << endl;
                 break;
         }
     }
 
+    delete[] g;
     return 0;
 }
